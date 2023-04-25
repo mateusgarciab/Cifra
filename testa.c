@@ -1,24 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+
 #include "posicoes.h"
 
 int main() {
-    struct nodoNum *ex = NULL;
+    struct listaNum *ex;
+    ex =  inicializaLista();
+
+    srand(time(NULL));//importante botar
+
     insereNodoNum(ex, 1);
-    printf("%d\n", ex->valor);
     insereNodoNum(ex, 2);
     insereNodoNum(ex, 3);
     insereNodoNum(ex, 4);
     insereNodoNum(ex, 5);
 
-    printf("%d\n", ex->valor);
-    printf("%d\n", ex->prox->valor);
-    printf("%d\n", ex->prox->prox->valor);
-    printf("%d\n", ex->prox->prox->prox->valor);
-    printf("%d\n", ex->prox->prox->prox->prox->valor);
+    printf("\n");
 
     imprimeListaNum(ex);
 
-    //destroilistaNum(ex);
+    for (int i = 0; i < 20; i++)
+        printf("%d ",aleatNum(ex));
+
+    destroilistaNum(ex);
     return 0;
 }
