@@ -31,7 +31,7 @@ void desalocaNodoNum(struct nodoNum *nodo)
     return;
 }
 
-void destroilistaNum(struct listaNum *lista)
+void destroiListaNum(struct listaNum *lista)
 {
     struct nodoNum *nodo, *prox;
     nodo = lista->inicio;

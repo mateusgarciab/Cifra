@@ -26,19 +26,38 @@ struct nodoCarac *alocaNodoCarac()
     return novo;
 }
 
-void insereLista(struct listaCarac *lista, int valor){
-    insereNodoNum(lista->inicio->lista, valor);
-    return;
-}
 
 void insereNodoCarac(struct listaCarac *lista, struct nodoCarac *nodo)
 {
     if (lista->inicio == NULL)
         lista->inicio = nodo;
-        
+
     struct nodoCarac *pos = lista->inicio;
-    while ((pos->prox != NULL) && (pos->carac < nodo->carac))
+    if (nodo->carac < pos->carac) {
+        nodo->prox = pos;
+        lista->inicio = nodo;
+        return;
+    }
+
+    while ((pos->prox != NULL) && (pos->prox->carac < nodo->carac))
         pos = pos->prox;
     
-    
+    nodo->prox = pos->prox;
+    pos->prox = nodo;
+    return;
+}
+
+void destroiListaCarac(struct listaCarac *lista){
+    struct nodoCarac *atras, *pont = lista->inicio;
+
+    while (pont->prox != NULL) {
+        destroiListaNum(pont->lista);
+        atras = pont;
+        pont = pont->prox;
+        free(atras);
+    }
+    destroiListaNum(pont->lista);
+    free(pont);
+    free(lista);
+    return;
 }

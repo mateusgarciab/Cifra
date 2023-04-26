@@ -13,7 +13,7 @@ struct listaNum *inicializaLista();
 
 struct nodoNum *alocaNodoNum();
 
-void destroilistaNum(struct listaNum *lista);
+void destroiListaNum(struct listaNum *lista);
 
 void insereNodoNum(struct listaNum *lista, int valor);
 
