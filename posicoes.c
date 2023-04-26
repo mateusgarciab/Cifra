@@ -55,8 +55,6 @@ void insereNodoNum(struct listaNum *lista, int valor)
     lista->inicio = nodo;
     lista->tam++;
 
-    printf("%d\n", lista->inicio->valor);
-
     return;
 }
 

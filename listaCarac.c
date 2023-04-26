@@ -27,28 +27,50 @@ struct nodoCarac *alocaNodoCarac()
 }
 
 
-void insereNodoCarac(struct listaCarac *lista, struct nodoCarac *nodo)
+void insereNodoCarac(struct listaCarac *lista, char letra, int num)
 {
-    if (lista->inicio == NULL)
-        lista->inicio = nodo;
+    if ((lista->inicio == NULL) || (lista->inicio->carac < letra)) {
+        struct nodoCarac *inn = lista->inicio;
+        lista->inicio = alocaNodoCarac();
+        lista->inicio->prox = inn;
+        lista->inicio->carac = letra;
+        insereNodoNum(lista->inicio->lista, num);
 
-    struct nodoCarac *pos = lista->inicio;
-    if (nodo->carac < pos->carac) {
-        nodo->prox = pos;
-        lista->inicio = nodo;
         return;
     }
 
-    while ((pos->prox != NULL) && (pos->prox->carac < nodo->carac))
+    struct nodoCarac *pos = lista->inicio;
+    
+    while ((pos->prox != NULL) && (pos->prox->carac < letra))
         pos = pos->prox;
     
-    nodo->prox = pos->prox;
-    pos->prox = nodo;
+    if (pos->carac == letra) {
+        insereNodoNum(pos->lista, num);
+        return;
+    }
+
+    if (pos->prox->carac == letra) { //se eu to no certo e ele existe
+        insereNodoNum(pos->prox->lista, num);
+        return;
+    } 
+
+    struct nodoCarac *novo = alocaNodoCarac();
+    novo->carac = letra;
+    insereNodoNum(novo->lista, num);
+    novo->prox = pos->prox;
+    pos->prox = novo;
+
     return;
 }
 
 void destroiListaCarac(struct listaCarac *lista){
     struct nodoCarac *atras, *pont = lista->inicio;
+
+    if (lista->inicio == NULL) {
+        free(lista);
+        return;
+    }
+
 
     while (pont->prox != NULL) {
         destroiListaNum(pont->lista);

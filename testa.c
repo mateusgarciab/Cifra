@@ -13,11 +13,19 @@ int main() {
 
     list = iniciaLiastaCarac();
 
-    struct nodoCarac *nodo;
-    nodo = alocaNodoCarac();
+    insereNodoCarac(list, 'a', 0);
+    insereNodoCarac(list, 'a', 1);
+    insereNodoCarac(list, 'a', 2);
+    insereNodoCarac(list, 'd', 3);
+    printf("%c\n",list->inicio->carac);
+    imprimeListaNum(list->inicio->lista);
+    printf("%c\n",list->inicio->prox->carac);
+    imprimeListaNum(list->inicio->prox->lista);
+    insereNodoCarac(list, 'b', 4);
+    insereNodoCarac(list, 'b', 5);
+    insereNodoCarac(list, 'c', 6);
+    /* nodo-> */
 
     destroiListaCarac(list);
-
-
     return 0;
 }

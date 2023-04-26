@@ -12,6 +12,6 @@ struct listaCarac *iniciaLiastaCarac();
 
 struct nodoCarac *alocaNodoCarac();
 
-void insereNodoCarac(struct listaCarac *lista, struct nodoCarac *nodo);
+void insereNodoCarac(struct listaCarac *lista, char letra, int num);
 
 void destroiListaCarac(struct listaCarac *lista);
