@@ -4,16 +4,19 @@ LDFLAGS = -lm
 CC = gcc
 
 # arquivos-objeto
-	objects = mundo.o posicoes.o testa.o
+	objects = mundo.o posicoes.o testa.o listaCarac.o
      
 #mundo: mundo.o libconjunto.o  liblef.o libfila.o
 #	$(CC) -o mundo mundo.o libconjunto.o  liblef.o libfila.o $(LDFLAGS)
 
-testa: testa.o posicoes.o
-	$(CC) -o testa testa.o posicoes.o $(LDFLAGS)
+testa: testa.o posicoes.o listaCarac.o
+	$(CC) -o testa testa.o posicoes.o listaCarac.o $(LDFLAGS)
 
 posicoes.o: posicoes.c
 	$(CC) -c $(CFLAGS) posicoes.c
+
+listaCarac.o: listaCarac.c
+	$(CC) -c $(CFLAGS) listaCarac.c
 
 #mundo.o: mundo.c
 #	$(CC) -c $(CFLAGS) mundo.c

@@ -3,6 +3,7 @@
 #include <time.h>
 
 #include "posicoes.h"
+#include "listaCarac.h"
 
 int main() {
     struct listaNum *ex;
