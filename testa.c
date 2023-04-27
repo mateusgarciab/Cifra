@@ -4,66 +4,50 @@
 
 /* #include "posicoes.h" */
 #include "listaCarac.h"
+#include "cript.h"
+
+FILE *abreArq(char nomeArquivo[50])
+{
+    FILE *arq;
+    arq = fopen(nomeArquivo,"r");
+
+    if (!arq) {
+        perror("Erro ao abrir arquivo");
+        exit(1);
+    }
+    return arq;
+}
+
+FILE *criaArq(char nomeArquivo[50])
+{
+    FILE *arq;
+    arq = fopen(nomeArquivo,"w");
+
+    if (!arq) {
+        perror("Erro ao abrir arquivo");
+        exit(1);
+    }
+    return arq;
+}
 
 int main() {
-    /* struct listaNum *ex; */
     struct listaCarac *list;
-   /*  ex =  inicializaLista(); */
     srand(time(NULL));//importante botar
 
-    list = iniciaLiastaCarac();
+    FILE *livro = abreArq("livroCifra.txt");
+    FILE *men = abreArq("mensagem.txt"); 
+    FILE *codf = criaArq("menCod");
+    FILE *chavesArq = criaArq("ArquivoChaves");
 
-    insereNodoCarac(list, 'a', 0);
-    insereNodoCarac(list, 'a', 1);
-    insereNodoCarac(list, 'a', 2);
-    insereNodoCarac(list, 'd', 3);
-    insereNodoCarac(list, 'b', 4);
-    insereNodoCarac(list, 'b', 5);
-    insereNodoCarac(list, 'c', 6);
-    insereNodoCarac(list, 'a', 7);
-    insereNodoCarac(list, 'e', 8);
-    insereNodoCarac(list, 'g', 9);
-    insereNodoCarac(list, 'c', 10);
-    insereNodoCarac(list, '1', 11);
-    insereNodoCarac(list, 'g', 12);
-    /* nodo-> */
+    list = geraArqChaves(livro, chavesArq);
+    
+
+    fclose(livro);
+    fclose(men);
+    fclose(codf);
+    fclose(chavesArq);
 
     imprimeLista(list);
-
-/*     printf("a == %d ==\n",posicaoAleat(list,'a'));
-    printf("== %d ==\n",posicaoAleat(list,'a'));
-    printf("== %d ==\n",posicaoAleat(list,'a'));
-    printf("== %d ==\n",posicaoAleat(list,'a'));
-    printf("== %d ==\n",posicaoAleat(list,'a'));
-    printf("== %d ==\n",posicaoAleat(list,'a'));
-    printf("b == %d ==\n",posicaoAleat(list,'b'));
-    printf("== %d ==\n",posicaoAleat(list,'b'));
-    printf("== %d ==\n",posicaoAleat(list,'b'));
-    printf("== %d ==\n",posicaoAleat(list,'b'));
-    printf("1 == %d ==\n",posicaoAleat(list,'1'));
-    printf("== %d ==\n",posicaoAleat(list,'1'));
-    printf("c == %d ==\n",posicaoAleat(list,'c'));
-    printf("== %d ==\n",posicaoAleat(list,'c'));
-    printf("== %d ==\n",posicaoAleat(list,'c'));
-    printf("d == %d ==\n",posicaoAleat(list,'d'));
-    printf("== %d ==\n",posicaoAleat(list,'d'));
-    printf("e == %d ==\n",posicaoAleat(list,'e'));
-    printf("== %d ==\n",posicaoAleat(list,'e'));
-    printf("g == %d ==\n",posicaoAleat(list,'g'));
-    printf("== %d ==\n",posicaoAleat(list,'g'));
-    printf("== %d ==\n",posicaoAleat(list,'g')); */
-
-    printf("a %c \n",encontraLetra(list,0));
-    printf("a %c \n",encontraLetra(list,1));
-    printf("a %c \n",encontraLetra(list,2));
-    printf("a %c \n",encontraLetra(list,3));
-    printf("a %c \n",encontraLetra(list,7));
-    printf("a %c \n",encontraLetra(list,10));
-    printf("a %c \n",encontraLetra(list,12));
-    printf("a %c \n",encontraLetra(list,9));
-    printf("a %c \n",encontraLetra(list,30));
-    printf("a %c \n",encontraLetra(list,-1));
-
-    destroiListaCarac(list);
+    destroiListaCarac(list); 
     return 0;
 }
