@@ -86,3 +86,14 @@ int aleatNum(struct listaNum *lista)
 
     return nodo->valor;
 }
+
+char pertence(struct listaNum *lista, int num)
+{
+    struct nodoNum *nodo = lista->inicio;
+    while((nodo != NULL) && (nodo->valor >= num)) {
+        if (nodo->valor == num)
+            return 1;
+        nodo = nodo->prox;
+    }
+    return 0;
+}

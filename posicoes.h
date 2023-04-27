@@ -20,3 +20,5 @@ void insereNodoNum(struct listaNum *lista, int valor);
 void imprimeListaNum(struct listaNum *lista);
 
 int aleatNum(struct listaNum *lista);
+
+char pertence(struct listaNum *lista, int num);

@@ -95,3 +95,26 @@ void imprimeLista(struct listaCarac *lista)
     }
     return;
 }
+
+int posicaoAleat(struct listaCarac *lista, char letra)
+{
+    struct nodoCarac *nodo = lista->inicio;
+    while ((nodo != NULL) && (letra > nodo->carac))
+        nodo = nodo->prox;
+
+    if (nodo->carac == letra)
+        return aleatNum(nodo->lista);
+    return -1;
+}
+
+char encontraLetra(struct listaCarac *lista, int num)
+{
+    struct nodoCarac *nodo = lista->inicio;
+    while (nodo != NULL){
+        if (pertence(nodo->lista, num))
+            return nodo->carac;
+        nodo = nodo->prox;
+    }
+
+    return -1;
+}

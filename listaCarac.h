@@ -17,3 +17,7 @@ void insereNodoCarac(struct listaCarac *lista, char letra, int num);
 void destroiListaCarac(struct listaCarac *lista);
 
 void imprimeLista(struct listaCarac *lista);
+
+int posicaoAleat(struct listaCarac *lista, char letra);
+
+char encontraLetra(struct listaCarac *lista, int num);
