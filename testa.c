@@ -17,14 +17,18 @@ int main() {
     insereNodoCarac(list, 'a', 1);
     insereNodoCarac(list, 'a', 2);
     insereNodoCarac(list, 'd', 3);
-    printf("%c\n",list->inicio->carac);
-    imprimeListaNum(list->inicio->lista);
-    printf("%c\n",list->inicio->prox->carac);
-    imprimeListaNum(list->inicio->prox->lista);
     insereNodoCarac(list, 'b', 4);
     insereNodoCarac(list, 'b', 5);
     insereNodoCarac(list, 'c', 6);
+    insereNodoCarac(list, 'a', 7);
+    insereNodoCarac(list, 'e', 8);
+    insereNodoCarac(list, 'g', 9);
+    insereNodoCarac(list, 'c', 10);
+    insereNodoCarac(list, '1', 11);
+    insereNodoCarac(list, 'g', 12);
     /* nodo-> */
+
+    imprimeLista(list);
 
     destroiListaCarac(list);
     return 0;

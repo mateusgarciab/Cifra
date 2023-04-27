@@ -29,7 +29,7 @@ struct nodoCarac *alocaNodoCarac()
 
 void insereNodoCarac(struct listaCarac *lista, char letra, int num)
 {
-    if ((lista->inicio == NULL) || (lista->inicio->carac < letra)) {
+    if ((lista->inicio == NULL) || (letra < lista->inicio->carac)) {
         struct nodoCarac *inn = lista->inicio;
         lista->inicio = alocaNodoCarac();
         lista->inicio->prox = inn;
@@ -41,7 +41,7 @@ void insereNodoCarac(struct listaCarac *lista, char letra, int num)
 
     struct nodoCarac *pos = lista->inicio;
     
-    while ((pos->prox != NULL) && (pos->prox->carac < letra))
+    while ((pos->prox != NULL) && (letra > pos->prox->carac))
         pos = pos->prox;
     
     if (pos->carac == letra) {
@@ -49,16 +49,17 @@ void insereNodoCarac(struct listaCarac *lista, char letra, int num)
         return;
     }
 
-    if (pos->prox->carac == letra) { //se eu to no certo e ele existe
+    /* cria e coloca no final da lista caso o local dessa letra seja no final 
+        e tambem cria caso ele nao exista mas existem outros depois */
+    if ((pos->prox == NULL) || ((pos->prox != NULL) && (pos->prox->carac != letra))) { //se eu to no certo e ele existe
+        struct nodoCarac *novo = alocaNodoCarac();
+        novo->carac = letra;
+        insereNodoNum(novo->lista, num);
+        novo->prox = pos->prox;
+        pos->prox = novo;
+    } else {
         insereNodoNum(pos->prox->lista, num);
-        return;
-    } 
-
-    struct nodoCarac *novo = alocaNodoCarac();
-    novo->carac = letra;
-    insereNodoNum(novo->lista, num);
-    novo->prox = pos->prox;
-    pos->prox = novo;
+    }
 
     return;
 }
@@ -81,5 +82,16 @@ void destroiListaCarac(struct listaCarac *lista){
     destroiListaNum(pont->lista);
     free(pont);
     free(lista);
+    return;
+}
+
+void imprimeLista(struct listaCarac *lista)
+{
+    struct nodoCarac *pont = lista->inicio;
+    while (pont != NULL){
+        printf("%c\n\n",pont->carac);
+        imprimeListaNum(pont->lista);
+        pont = pont->prox;
+    }
     return;
 }
