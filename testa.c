@@ -6,7 +6,7 @@
 #include "listaCarac.h"
 #include "cript.h"
 
-FILE *abreArq(char nomeArquivo[50])
+FILE *abreArq(char nomeArquivo[])
 {
     FILE *arq;
     arq = fopen(nomeArquivo,"r");
@@ -18,7 +18,7 @@ FILE *abreArq(char nomeArquivo[50])
     return arq;
 }
 
-FILE *criaArq(char nomeArquivo[50])
+FILE *criaArq(char nomeArquivo[])
 {
     FILE *arq;
     arq = fopen(nomeArquivo,"w");
@@ -31,7 +31,7 @@ FILE *criaArq(char nomeArquivo[50])
 }
 
 int main() {
-    struct listaCarac *list;
+     struct listaCarac *list; 
     srand(time(NULL));//importante botar
 
     FILE *livro = abreArq("livroCifra.txt");
@@ -39,8 +39,11 @@ int main() {
     FILE *codf = criaArq("menCod");
     FILE *chavesArq = criaArq("ArquivoChaves");
 
-    list = geraArqChaves(livro, chavesArq);
+    /* list = geraArqChaves(livro, chavesArq); */
     
+    /* criptografa(livro, men, codf, chavesArq); */
+
+    list = leArqChaves(chavesArq);//deu uma merda cabulosa 
 
     fclose(livro);
     fclose(men);
@@ -48,6 +51,6 @@ int main() {
     fclose(chavesArq);
 
     imprimeLista(list);
-    destroiListaCarac(list); 
+    destroiListaCarac(list);
     return 0;
 }

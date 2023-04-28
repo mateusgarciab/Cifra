@@ -21,3 +21,5 @@ void imprimeLista(struct listaCarac *lista);
 int posicaoAleat(struct listaCarac *lista, char letra);
 
 char encontraLetra(struct listaCarac *lista, int num);
+
+void escreveNodo(FILE *arq, struct nodoCarac *nodo);

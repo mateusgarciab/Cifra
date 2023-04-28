@@ -118,3 +118,14 @@ char encontraLetra(struct listaCarac *lista, int num)
 
     return -1;
 }
+
+void escreveNodo(FILE *arq, struct nodoCarac *nodo)
+{
+    fprintf(arq,"%c:",nodo->carac);
+    struct nodoNum *num = nodo->lista->inicio;
+    while (num != NULL) {
+        fprintf(arq, " %d",num->valor);
+        num = num->prox;
+    }
+    return;
+}
