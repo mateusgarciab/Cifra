@@ -31,17 +31,17 @@ FILE *criaArq(char nomeArquivo[])
 }
 
 int main() {
-     struct listaCarac *list; 
+    struct listaCarac *list;
     srand(time(NULL));//importante botar
 
     FILE *livro = abreArq("livroCifra.txt");
     FILE *men = abreArq("mensagem.txt"); 
     FILE *codf = criaArq("menCod");
-    FILE *chavesArq = criaArq("ArquivoChaves");
+    FILE *chavesArq = abreArq("ArquivoChaves");
 
-    /* list = geraArqChaves(livro, chavesArq); */
+    /* list = geraArqChaves(livro, chavesArq);  */
     
-    /* criptografa(livro, men, codf, chavesArq); */
+    criptografa(livro, men, codf, chavesArq); 
 
     list = leArqChaves(chavesArq);//deu uma merda cabulosa 
 
