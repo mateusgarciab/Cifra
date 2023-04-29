@@ -130,11 +130,11 @@ void descodificaChaves(FILE *menCod, FILE *chavesArq, FILE *menDesc)
     return;
 }
 
-void decodificaLivro(FILE *menCod, FILE *livro, FILE *menDesc)
+void descodificaLivro(FILE *menCod, FILE *livro, FILE *menDesc)
 {
     struct listaCarac *lista = iniciaLiastaCarac();
-    int i = 0;
-    char letra;
+    int num, i = 0;
+    char lixo, letra;
     while (!feof(livro)){
         letra = devolveInicial(livro);
         if (letra != -1) {
@@ -142,5 +142,22 @@ void decodificaLivro(FILE *menCod, FILE *livro, FILE *menDesc)
             i++;
         }
     }
-    
+
+    fscanf(menCod, "%d", &num);
+    while (!feof(menCod)) {
+        if (num == -1) {
+            fprintf(menDesc," ");
+        } else {
+            letra = encontraLetra(lista, num);
+            if (letra == -1)
+                fprintf(menDesc," ");
+            else
+                fprintf(menDesc, "%c", letra);
+        }
+        fscanf(menCod, "%c", &lixo);
+        fscanf(menCod, "%d", &num);
+    }
+
+    destroiListaCarac(lista);
+    return;
 }

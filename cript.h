@@ -9,3 +9,5 @@ void criptografa(FILE *livro, FILE *mensOriginal, FILE *mensCodi, FILE *chavesAr
 struct listaCarac *leArqChaves(FILE *arq);
 
 void descodificaChaves(FILE *menCod, FILE *chavesArq, FILE *menDesc);
+
+void descodificaLivro(FILE *menCod, FILE *livro, FILE *menDesc);
