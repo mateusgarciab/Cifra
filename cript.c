@@ -104,3 +104,43 @@ struct listaCarac *leArqChaves(FILE *arq)
 
     return lista;
 }
+
+void descodificaChaves(FILE *menCod, FILE *chavesArq, FILE *menDesc)
+{
+    struct listaCarac *lista = leArqChaves(chavesArq);
+    char lixo, letra;
+    int num;
+
+    fscanf(menCod, "%d", &num);
+    while (!feof(menCod)) {
+        if (num == -1) {
+            fprintf(menDesc," ");
+        } else {
+            letra = encontraLetra(lista, num);
+            if (letra == -1)
+                fprintf(menDesc," ");
+            else
+                fprintf(menDesc, "%c", letra);
+        }
+        fscanf(menCod, "%c", &lixo);
+        fscanf(menCod, "%d", &num);
+    }
+
+    destroiListaCarac(lista);
+    return;
+}
+
+void decodificaLivro(FILE *menCod, FILE *livro, FILE *menDesc)
+{
+    struct listaCarac *lista = iniciaLiastaCarac();
+    int i = 0;
+    char letra;
+    while (!feof(livro)){
+        letra = devolveInicial(livro);
+        if (letra != -1) {
+            insereNodoCarac(lista, letra, i);
+            i++;
+        }
+    }
+    
+}
