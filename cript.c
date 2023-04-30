@@ -9,7 +9,6 @@ char devolveInicial(FILE *arq)
     fscanf(arq,"%c", &letra);
     if ((feof(arq))|| (letra < '!') || (letra > '~'))
         return -1;
-    printf("%c\n",letra);
 
     fscanf(arq,"%c", &lixo);
     while ((!feof(arq)) && (lixo != '\n') && (lixo != '\0') && (lixo != ' ')) {
