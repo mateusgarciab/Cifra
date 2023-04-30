@@ -7,11 +7,12 @@ char devolveInicial(FILE *arq)
 {
     char letra, lixo;
     fscanf(arq,"%c", &letra);
-    if ((letra < '!') || (letra > '~'))
+    if ((feof(arq))|| (letra < '!') || (letra > '~'))
         return -1;
+    printf("%c\n",letra);
 
     fscanf(arq,"%c", &lixo);
-    while ((!feof(arq)) && (lixo != '\n') && (lixo != '\0') && (lixo != ' ')) {//talvez de problema de passar do fim do arquivo
+    while ((!feof(arq)) && (lixo != '\n') && (lixo != '\0') && (lixo != ' ')) {
         fscanf(arq,"%c", &lixo);
     
     }
@@ -68,9 +69,11 @@ void criptografa(FILE *livro, FILE *mensOriginal, FILE *mensCodi, FILE *chavesAr
         if ((letra == ' ') || (letra == '\n')) {
             fprintf(mensCodi, "%d ", -1);
         } else {
+            if ((letra >= 'A') && (letra <= 'Z'))
+                letra += 32;
             num = posicaoAleat(lista, letra);
             if (num == -1) {
-                printf("impossivel codificar mensagem\n");
+                printf("impossivel codificar mensagem %c\n",letra);
                 exit(1);
             }
             fprintf(mensCodi, "%d ", num);

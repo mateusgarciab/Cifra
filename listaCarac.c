@@ -99,6 +99,7 @@ void imprimeLista(struct listaCarac *lista)
 int posicaoAleat(struct listaCarac *lista, char letra)
 {
     struct nodoCarac *nodo = lista->inicio;
+
     while ((nodo != NULL) && (letra > nodo->carac))
         nodo = nodo->prox;
 
